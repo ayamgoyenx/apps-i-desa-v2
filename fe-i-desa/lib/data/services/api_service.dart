@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:cookie_jar/cookie_jar.dart';
 import '../../core/constants/api_constants.dart';
@@ -8,7 +9,7 @@ class ApiService {
   factory ApiService() => _instance;
 
   late final Dio _dio;
-  late final CookieJar _cookieJar;
+  CookieJar? _cookieJar;
 
   // In-memory token set after login; sent as Authorization: Bearer on every request.
   // This is necessary for Flutter Web where browsers block manual Cookie headers
@@ -20,8 +21,6 @@ class ApiService {
   }
 
   ApiService._internal() {
-    _cookieJar = CookieJar();
-
     _dio = Dio(BaseOptions(
       baseUrl: ApiConstants.baseUrl,
       connectTimeout: const Duration(seconds: 30),
@@ -72,11 +71,11 @@ class ApiService {
   }
 
   Dio get dio => _dio;
-  CookieJar get cookieJar => _cookieJar;
+  CookieJar? get cookieJar => _cookieJar;
 
   // Clear cookies (for logout)
   Future<void> clearCookies() async {
-    await _cookieJar.deleteAll();
+    await _cookieJar?.deleteAll();
   }
 
   // Generic GET request
