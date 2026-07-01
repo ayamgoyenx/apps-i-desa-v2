@@ -6,12 +6,6 @@
       "GO_BUILD_FLAGS": "-ldflags '-s -w'"
     }
   },
-  "functions": {
-  "api/**/*.go": {
-    "maxDuration": 30,
-    "memory": 1024
-  }
-  },
   "rewrites": [
     {
       "source": "/(.*)",
