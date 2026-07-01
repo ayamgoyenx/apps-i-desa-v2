@@ -7,10 +7,10 @@
     }
   },
   "functions": {
-    "api/main.go": {
-      "maxDuration": 30,
-      "memory": 1024
-    }
+  "api/**/*.go": {
+    "maxDuration": 30,
+    "memory": 1024
+  }
   },
   "rewrites": [
     {

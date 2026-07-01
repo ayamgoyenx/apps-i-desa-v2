@@ -33,7 +33,7 @@
 //   - Push to main branch (for Git integration)
 //
 // 3. The vercel.json configuration ensures all routes are handled by this function
-package handler
+package main
 
 import (
 	"errors"
